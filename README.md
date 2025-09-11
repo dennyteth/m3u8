@@ -2,11 +2,18 @@
 M3U8 [![](https://awesome.re/mentioned-badge.svg)](https://github.com/avelino/awesome-go#video)
 ====
 
-Project status
----------------
+> [!IMPORTANT]
+>
+> The project support suspended and code moved to read only archive.
+> https://github.com/grafov/m3u8/issues/225
+>
+> The project has a successor:
+> [https://github.com/Eyevinn/hls-m3u8](https://github.com/Eyevinn/hls-m3u8). 
+>
+> I encourage you to migrate to the new library,
+> [Eyevinn/hls-m3u8](https://github.com/Eyevinn/hls-m3u8), as HLS continues to
+> evolve and the new library supports newer features.
 
-Project support suspended and code moved to read only archive.
-https://github.com/grafov/m3u8/issues/225
 
 About
 -----
