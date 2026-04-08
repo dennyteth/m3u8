@@ -5,7 +5,7 @@ M3U8 [![](https://awesome.re/mentioned-badge.svg)](https://github.com/avelino/aw
 > [!IMPORTANT]
 >
 > The project support suspended and code moved to read only archive.
-> https://github.com/grafov/m3u8/issues/225
+> https://github.com/dennyteth/m3u8/issues/225
 >
 > The project has a successor:
 > [https://github.com/Eyevinn/hls-m3u8](https://github.com/Eyevinn/hls-m3u8). 
@@ -40,16 +40,16 @@ See the list of the library authors at [AUTHORS](AUTHORS) file.
 Install
 -------
 
-	go get github.com/grafov/m3u8
+	go get github.com/dennyteth/m3u8
 
-or get releases from https://github.com/grafov/m3u8/releases
+or get releases from https://github.com/dennyteth/m3u8/releases
 
-Documentation [![GoDoc](https://godoc.org/github.com/grafov/m3u8?status.svg)](https://pkg.go.dev/github.com/grafov/m3u8)
+Documentation [![GoDoc](https://godoc.org/github.com/dennyteth/m3u8?status.svg)](https://pkg.go.dev/github.com/dennyteth/m3u8)
 -------------
 
 Package online documentation (examples included) available at:
 
-* http://pkg.go.dev/github.com/grafov/m3u8
+* http://pkg.go.dev/github.com/dennyteth/m3u8
 
 Supported by the HLS protocol tags and their library support explained in [M3U8 cheatsheet](M3U8.md).
 
@@ -139,7 +139,7 @@ Project status [![Go Report Card](https://goreportcard.com/badge/grafov/m3u8)](h
 
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light.svg)](https://deepsource.io/gh/grafov/m3u8/?ref=repository-badge)
 
-Code coverage: https://gocover.io/github.com/grafov/m3u8
+Code coverage: https://gocover.io/github.com/dennyteth/m3u8
 
 Project maintainers
 --------------------
