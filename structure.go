@@ -206,6 +206,7 @@ type MediaSegment struct {
 	SeqId           uint64
 	Title           string // optional second parameter for EXTINF tag
 	URI             string
+	Host            string    // 从分片URI中提取的主机地址（含scheme），如 https://example.com
 	Duration        float64   // first parameter for EXTINF tag; duration must be integers if protocol version is less than 3 but we are always keep them float
 	Limit           int64     // EXT-X-BYTERANGE <n> is length in bytes for the file under URI
 	Offset          int64     // EXT-X-BYTERANGE [@o] is offset from the start of the file under URI
@@ -233,6 +234,7 @@ type SCTE struct {
 type Key struct {
 	Method            string
 	URI               string
+	Host              string // 从Key URI中提取的主机地址（含scheme），如 https://example.com
 	IV                string
 	Keyformat         string
 	Keyformatversions string

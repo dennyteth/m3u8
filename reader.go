@@ -16,6 +16,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
@@ -23,6 +24,15 @@ import (
 )
 
 var reKeyValue = regexp.MustCompile(`([a-zA-Z0-9_-]+)=("[^"]+"|[^",]+)`)
+
+// extractHost 从 URI 中提取 scheme+host 部分，如 https://example.com；非绝对 URI 返回空字符串
+func extractHost(uri string) string {
+	u, err := url.Parse(uri)
+	if err != nil || u.Host == "" {
+		return ""
+	}
+	return u.Scheme + "://" + u.Host
+}
 
 // TimeParse allows globally apply and/or override Time Parser function.
 // Available variants:
@@ -530,6 +540,10 @@ func decodeLineOfMediaPlaylist(p *MediaPlaylist, wv *WV, state *decodingState, l
 			if err != nil {
 				return err
 			}
+			// 提取分片 URI 中的 host，写入当前分片
+			if h := extractHost(line); h != "" {
+				p.Segments[p.last()].Host = h
+			}
 			state.tagInf = false
 		}
 		if state.tagRange {
@@ -558,7 +572,7 @@ func decodeLineOfMediaPlaylist(p *MediaPlaylist, wv *WV, state *decodingState, l
 		}
 		// If EXT-X-KEY appeared before reference to segment (EXTINF) then it linked to this segment
 		if state.tagKey {
-			p.Segments[p.last()].Key = &Key{state.xkey.Method, state.xkey.URI, state.xkey.IV, state.xkey.Keyformat, state.xkey.Keyformatversions}
+			p.Segments[p.last()].Key = &Key{state.xkey.Method, state.xkey.URI, state.xkey.Host, state.xkey.IV, state.xkey.Keyformat, state.xkey.Keyformatversions}
 			// First EXT-X-KEY may appeared in the header of the playlist and linked to first segment
 			// but for convenient playlist generation it also linked as default playlist key
 			if p.Key == nil {
@@ -648,6 +662,7 @@ func decodeLineOfMediaPlaylist(p *MediaPlaylist, wv *WV, state *decodingState, l
 				state.xkey.Method = v
 			case "URI":
 				state.xkey.URI = v
+				state.xkey.Host = extractHost(v)
 			case "IV":
 				state.xkey.IV = v
 			case "KEYFORMAT":
